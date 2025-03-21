@@ -1,1 +1,1 @@
-# capacitacion-syn-react
+capacitacion-syn-react
