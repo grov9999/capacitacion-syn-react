@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @apply bg-[#f8f9fb];
+}
+
+/* .register__input {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.register__input--all {
+  grid-template-columns: 1fr;
+}
+
+.register__input input {
+  width: 100%;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(223,223,223,0.829);
+} */
