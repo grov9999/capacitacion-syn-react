@@ -1,0 +1,25 @@
+.header {
+    border: 1px solid steelblue;
+    background-color: steelblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 1px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.header--info {
+    border: 1px solid yellowgreen;
+    background-color: yellowgreen
+}
+
+.nav {
+    display: flex;
+}
+
+.nav li {
+    padding: 5px;
+}
