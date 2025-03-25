@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/transfer")
-@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE}, allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT}, allowedHeaders = "*")
 public class TransferController {
 
     @Autowired
@@ -40,5 +40,16 @@ public class TransferController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateTransfer(@PathVariable Long id, @RequestBody Transfer input) {
+        Transfer updatedTransfer = iTransferService.update(id, input);
+        if (updatedTransfer != null) {
+            return ResponseEntity.ok(updatedTransfer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }

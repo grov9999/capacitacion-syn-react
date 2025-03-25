@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransferServiceImpl implements ITransferService {
@@ -36,6 +37,24 @@ public class TransferServiceImpl implements ITransferService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Transfer update(Long id, Transfer transfer) {
+        // Busca la transferencia existente
+        Optional<Transfer> existingTransfer = transferRepository.findById(id);
+        if (existingTransfer.isPresent()) {
+            Transfer transferUpdate = existingTransfer.get();
+            // Actualiza los campos necesarios
+            transferUpdate.setOrigen(transfer.getOrigen());
+            transferUpdate.setDestino(transfer.getDestino());
+            transferUpdate.setDescripcion(transfer.getDescripcion());
+            transferUpdate.setTiempo(transfer.getTiempo());
+            // Guarda y devuelve la transferencia actualizada
+            return transferRepository.save(transferUpdate);
+        }
+        // Si no se encuentra, retorna null o lanza una excepción según tu manejo
+        return null;
     }
 
 }
