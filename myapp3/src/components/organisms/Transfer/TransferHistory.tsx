@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getTransfers, deleteTransfer, updateTransfer } from "../../../core/utils/api";
+import { getTransfers, deleteTransfer, updateTransfer } from "../../../core/utils/transferapi";
 import { useState } from "react";
 
 export const TransferHistory = () => {
@@ -89,28 +89,31 @@ export const TransferHistory = () => {
         <form onSubmit={handleUpdateSubmit} className="mt-4 p-4 border bg-gray-100 rounded">
           <h3 className="text-xl font-bold mb-4">Actualizar Transferencia</h3>
           <div className="mb-2">
-            <label className="block text-sm font-medium">Tipo</label>
+            <label htmlFor="destino" className="block text-sm font-medium">Tipo</label>
             <input
+              id="destino"
               type="text"
-              value={selectedTransfer.destino}
+              value={selectedTransfer?.destino || ""}
               onChange={(e) => setSelectedTransfer({ ...selectedTransfer, destino: e.target.value })}
               className="w-full px-3 py-2 border rounded"
             />
           </div>
           <div className="mb-2">
-            <label className="block text-sm font-medium">Descripción</label>
+            <label htmlFor="descripcion" className="block text-sm font-medium">Descripción</label>
             <input
+              id="descripcion"
               type="text"
-              value={selectedTransfer.descripcion}
+              value={selectedTransfer?.descripcion || ""}
               onChange={(e) => setSelectedTransfer({ ...selectedTransfer, descripcion: e.target.value })}
               className="w-full px-3 py-2 border rounded"
             />
           </div>
           <div className="mb-2">
-            <label className="block text-sm font-medium">Cuenta</label>
+            <label htmlFor="origen" className="block text-sm font-medium">Cuenta</label>
             <input
+              id="origen"
               type="text"
-              value={selectedTransfer.origen}
+              value={selectedTransfer?.origen || ""}
               onChange={(e) => setSelectedTransfer({ ...selectedTransfer, origen: e.target.value })}
               className="w-full px-3 py-2 border rounded"
             />

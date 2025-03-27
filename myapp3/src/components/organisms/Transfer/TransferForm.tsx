@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { createTransfer } from "../../../core/utils/api";
+import { createTransfer } from "../../../core/utils/transferapi";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Yup from "yup";
@@ -53,8 +53,10 @@ export const TransferForm = () => {
                                 Nueva Transferencia
                             </h2>
                             <div className="mb-2">
-                                <p >Cuenta de Origen</p>
+                                <label htmlFor="origen" className="block">Cuenta de Origen</label>
+                                
                                 <Field
+                                    id="origen" // Asociado con el label
                                     as="select"
                                     name="origen"
                                     className="w-full border border-gray-300 rounded-lg p-2"
@@ -72,9 +74,10 @@ export const TransferForm = () => {
                                 />
                             </div>
                             <div className="mb-2">
-                                <p>Cuenta de Destino</p>
+                                <label htmlFor="destino" className="block">Cuenta de Destino</label>
                                 <Field
                                     type="text"
+                                    id="destino" // Asociado con el label
                                     name="destino"
                                     autoComplete="off"
                                     className="w-full border border-gray-300 rounded-lg p-2"
@@ -86,8 +89,9 @@ export const TransferForm = () => {
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2">
-                                <p>Monto</p>
+                                <label htmlFor="monto" className="block">Monto</label>
                                 <Field
+                                    id="monto" // Asociado con el label
                                     type="text"
                                     name="monto"
                                     autoComplete="off"
@@ -100,8 +104,9 @@ export const TransferForm = () => {
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2">
-                                <p>Descripción</p>
+                                <label htmlFor="descripcion" className="block">Descripción</label>
                                 <Field
+                                    id="descripcion" // Asociado con el label
                                     type="text"
                                     name="descripcion"
                                     autoComplete="off"
@@ -114,8 +119,12 @@ export const TransferForm = () => {
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2 flex items-center gap-2">
-                                <Field type="checkbox" name="terminos" />
-                                <p>Guardar como beneficiario frecuente</p>
+                                <Field 
+                                    type="checkbox" 
+                                    id="terminos" 
+                                    name="terminos" 
+                                    aria-label="Guardar como beneficiario frecuente"/>
+                                <label htmlFor="terminos" className="block">Guardar como beneficiario frecuente</label>
                                 <ErrorMessage
                                     name="terminos"
                                     component="span"
@@ -123,12 +132,10 @@ export const TransferForm = () => {
                                 />
                             </div>
                             <button
-                                className={`w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300'
-                                ${isSubmitting
+                                className={`w-full py-2 px-4 rounded-lg transition duration-300 ${isSubmitting
                                         ? 'bg-gray-400 cursor-not-allowed'
                                         : 'bg-blue-500 hover:bg-blue-600 cursor-pointer'
-                                    }
-                                `}
+                                }`}
                                 type='submit'
                                 disabled={isSubmitting}
                             >

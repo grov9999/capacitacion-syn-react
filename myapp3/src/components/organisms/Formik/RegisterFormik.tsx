@@ -22,12 +22,11 @@ export const RegisterFormik = () => {
         error,
         loading
     } = useFetch<Transferencia[]>({
-        callback: getTransferencias(),
+        callback: () => getTransferencias(),
     });
 
 
     return (
-        // <div className="flex flex-col items-center">
         <div className="flex flex- items-auto">
             <Formik
                 initialValues={{
@@ -47,7 +46,7 @@ export const RegisterFormik = () => {
                             return "Transferencia Realizada";
                         },
                         error: "Error al realizar la transferencia",
-                    });
+                    });                     
                     console.log(values);
                 }}
             >
@@ -60,14 +59,12 @@ export const RegisterFormik = () => {
                         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
                             <h2 className="text-2xl font-bold mb-4 text-center">Nueva Transferencia</h2>
                             <div className="mb-2">
-                                <p >Cuenta de Origen</p>
-                                {/* <Field type="select" name="origen" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange}/> */}
-                                <Field as="select" name="origen" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange}
-                                >
-                                    <option value="">Selecciona una cuenta</option>
-                                    <option value="1">Cuenta Corriente1 - ****7890 (€5,842.75)</option>
-                                    <option value="2">Cuenta Corriente2 - ****5678 (€4,002.20)</option>
-                                    <option value="3">Cuenta Corriente3 - ****3492 (€3,567.00)</option>
+                            <label htmlFor="origen" className="block">Cuenta de Origen</label>
+                                <Field id="origen" as="select" name="origen" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange} >
+                                    <option value="selecciona">Selecciona una cuenta</option>
+                                    <option value="****7890">Cuenta Corriente1 - ****7890 (€5,842.75)</option>
+                                    <option value="****5678">Cuenta Corriente2 - ****5678 (€4,002.20)</option>
+                                    <option value="****3492">Cuenta Corriente3 - ****3492 (€3,567.00)</option>
                                 </Field>
                                 <ErrorMessage
                                     name="origen"
@@ -75,52 +72,46 @@ export const RegisterFormik = () => {
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2">
-                                <p>Cuenta de Destino</p>
-                                <Field type="text" name="destino" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange} />
+                            <label htmlFor="destino" className="block">Cuenta de Destino</label>
+                                <Field type="text" id="destino" name="destino" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange}/>
                                 <ErrorMessage
                                     name="destino"
                                     component="span"
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2">
-                                <p>Monto</p>
-                                <Field type="text" name="monto" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange} />
+                            <label htmlFor="monto" className="block">Monto</label>
+                                <Field id="monto" type="text" name="monto" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange} />
                                 <ErrorMessage
                                     name="monto"
                                     component="span"
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2">
-                                <p>Descripción</p>
-                                <Field type="text" name="descripcion" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange} />
+                            <label htmlFor="descripcion" className="block">Descripción</label>
+                                <Field id="descripcion" type="text" name="descripcion" autoComplete="off" className="w-full border border-gray-300 rounded-lg p-2" onChange={handleChange}/>
                                 <ErrorMessage
                                     name="descripcion"
                                     component="span"
                                     className="text-red-600/70 text-[.7em]" />
                             </div>
                             <div className="mb-2 flex items-center gap-2">
-                                {/* <div className="flex items-center gap-2"> */}
-                                <Field type="checkbox" name="terminos" />
-                                <p>Guardar como beneficiario frecuente</p>
-                                {/* </div> */}
+                                <Field type="checkbox" id="terminos" name="terminos" aria-label="Guardar como beneficiario frecuente"/>
+                                <label htmlFor="terminos" className="block">Guardar como beneficiario frecuente</label>
                                 <ErrorMessage
                                     name="terminos"
                                     component="span"
                                     className="text-red-600/70 text-[.7em]"
                                 />
                             </div>
-                            {/* <button className='w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300' */}
                             <button
-                                className={`w-full bg-blue-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300'
-                                ${isSubmitting
+                                className={`w-full py-2 px-4 rounded-lg transition duration-300 ${isSubmitting
                                         ? 'bg-gray-400 cursor-not-allowed'
                                         : 'bg-blue-500 hover:bg-blue-600 cursor-pointer'
-                                    }
-                            `}
+                                }`}
                                 type='submit'
                                 disabled={isSubmitting}
                             >
-                                {/* {isSubmitting ? 'Transferencia Realizada' : ' Realizar Transferencia'} */}
                                 Realizar Transferencia
                             </button>
                         </div>

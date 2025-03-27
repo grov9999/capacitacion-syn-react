@@ -1,6 +1,8 @@
-import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router";
+import { useAuth } from "../features/auth/hooks/useAuth";
+
 
 interface LoginFormValues {
   email: string;
@@ -15,20 +17,19 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginForm: React.FC = () => {
+  const { startLogin } = useAuth();
+
   const initialValues: LoginFormValues = {
     email: "",
     password: "",
     rememberMe: false,
   };
 
-  const handleSubmit = (
-    values: LoginFormValues,
-    { setSubmitting }: FormikHelpers<LoginFormValues>
-  ): void => {
-    console.log("Valores del formulario:", values);
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 500);
+  const handleSubmit = (values: LoginFormValues): void => {
+    startLogin({
+      email: values.email,
+      password: values.password,
+    });
   };
 
   return (
@@ -56,10 +57,11 @@ const LoginForm: React.FC = () => {
                   id="email"
                   name="email"
                   type="email"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.email && touched.email
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.email && touched.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                   placeholder="ejemplo@correo.com"
                 />
                 <ErrorMessage
@@ -80,10 +82,11 @@ const LoginForm: React.FC = () => {
                   id="password"
                   name="password"
                   type="password"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.password && touched.password
-                    ? "border-red-500"
-                    : "border-gray-300"
-                    }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                    errors.password && touched.password
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
                 <ErrorMessage
                   name="password"

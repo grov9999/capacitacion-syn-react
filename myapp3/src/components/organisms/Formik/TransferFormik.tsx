@@ -9,7 +9,7 @@ const TransferFormik: React.FC = () => {
     error,
     loading
   } = useFetch<Transferencia[]>({
-    callback: getTransferencias(),
+    callback: () => getTransferencias(),
   });
 
   return (

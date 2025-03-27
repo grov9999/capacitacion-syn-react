@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 interface ContextProps {
+  sidebarOpen: any;
   isDark: boolean;
   toggleTheme: () => void;
 }

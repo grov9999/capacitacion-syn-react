@@ -1,7 +1,6 @@
-export const sleep = (milli: number) => {
-    return new Promise((resolve) => {
+export const sleep = (mili: number) =>
+    new Promise((resolve) => {
         setTimeout(() => {
             resolve(true);
-        }, milli);
+        }, mili);
     });
-}

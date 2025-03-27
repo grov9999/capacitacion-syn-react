@@ -8,10 +8,12 @@ interface Props {
 
 export interface UIState {
   isDark: boolean;
+  sidebarOpen: boolean; // Add this property
 }
 
 const UI_INITIAL_STATE: UIState = {
   isDark: false,
+  sidebarOpen: false, // Default value
 };
 
 export const UIProvider: FC<Props> = ({ children }) => {
